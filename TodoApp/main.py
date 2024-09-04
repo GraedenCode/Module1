@@ -61,10 +61,10 @@ while True:
             print("there is no item with that number.")
             continue
 
-    elif user_action.startswith('exit'):
+    elif user_action.startswith('ext'):
         break
     else:
         print("command is not valid.")
 
-print("Bye!!")
+print("Bye!")
 
