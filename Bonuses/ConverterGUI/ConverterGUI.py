@@ -1,15 +1,26 @@
-import FreeSimpleGUI as sg
+import FreeSimpleGUI as Sg
+import ConverterFunctions as Cf
 
-feet_label = sg.Text("Enter Feet:")
-feet_input = sg.Input()
+feet_label = Sg.Text("Enter Feet:")
+feet_input = Sg.Input()
 
-inches_label = sg.Text("Enter Inches:")
-inches_input = sg.Input()
+inches_label = Sg.Text("Enter Inches:")
+inches_input = Sg.Input()
 
-convert_button = sg.Button("Convert")
+convert_button = Sg.Button("Convert")
 
-window = sg.Window("Converter", layout=[[feet_label, feet_input],
+window = Sg.Window("Converter", layout=[[feet_label, feet_input],
                                         [inches_label,inches_input],
                                         [convert_button]])
-window.read()
+
+
+while True:
+    event, values = window.read()
+    match event:
+        case 'Convert':
+            pass
+        case Sg.WIN_CLOSED:
+            break
+
+
 window.close()
