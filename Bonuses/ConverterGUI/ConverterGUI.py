@@ -1,6 +1,5 @@
 import FreeSimpleGUI as Sg
 import ConverterFunctions as Cf
-from Bonuses.ConverterGUI.ConverterFunctions import feet_to_inches
 
 feet_label = Sg.Text("Enter Feet:")
 feet_input = Sg.Input( key="feet")
@@ -15,7 +14,6 @@ window = Sg.Window("Converter", layout=[[feet_label, feet_input],
                                         [inches_label,inches_input],
                                         [convert_button,output_label]])
 
-
 while True:
     event, values = window.read()
     match event:
@@ -24,6 +22,5 @@ while True:
             window['output'].update(value=inches)
         case Sg.WIN_CLOSED:
             break
-
 
 window.close()
