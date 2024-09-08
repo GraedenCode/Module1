@@ -1,34 +1,30 @@
 import FreeSimpleGUI as sg
-import shutil
+from functions import make_archive
+
+sg.theme('DarkGreen4')
 
 label1 = sg.Text("Select files to compress:")
 input1 = sg.Input(key="File")
-choose_button1 = sg.FilesBrowse("Choose")
+choose_button1 = sg.FilesBrowse("Choose", key='files')
 
 label2 = sg.Text("Select files to compress:")
 input2 = sg.Input(key="Destination")
-choose_button2 = sg.FolderBrowse("Choose")
+choose_button2 = sg.FolderBrowse("Choose", key='folder')
 
 compress_button = sg.Button("Compress")
+output_label = sg.Text(key='Output')
 
-window = sg.Window("File Compressor",background_color="black",
+window = sg.Window("File Compressor",
                    layout=[[label1, input1, choose_button1],
                            [label2, input2, choose_button2],
-                           [compress_button]])
-
-name_input = sg.Input("new_name")
-rename_button = sg.Button('Rename')
+                           [compress_button,output_label]])
 
 while True:
-    event, values = window.read()
-    print(event)
-    print(values)
-    match event:
-        case 'Compress':
-            new_name = sg.popup_get_text("File Name")
-            shutil.make_archive(base_name=new_name,format="zip",
-                                root_dir=values['Destination'], base_dir=values['File'])
-        case sg.WIN_CLOSED:
-            break
+    event,values = window.read()
+    print(event, values)
+    filepaths = values['files'].split(';')
+    folder = values['folder']
+    make_archive(filepaths, folder)
+    window['Output'].update(value='Files Zipped!', text_color="Purple")
 
 window.close()
