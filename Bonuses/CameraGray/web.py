@@ -5,7 +5,7 @@ uploaded_image = st.file_uploader("Upload Image")
 
 with st.expander('Start Camera'):
     # start camera
-    camera_image = st.camera_input('Camera')
+    camera_image = st.camera_input('')
 
 
 if camera_image:
